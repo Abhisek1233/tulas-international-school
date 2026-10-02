@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best Boarding School in Dehradun | Tulas International School (TIS)</title>
+    <meta
+      name="description"
+      content="CBSE-affiliated co-ed boarding school in Dehradun, Uttarakhand for boys and girls from Class 4 to 12. Holistic education, world-class sports, and modern gurukul values."
+    />
+    <meta name="theme-color" content="#B90124" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tis.edu.in/" />
+    <meta property="og:title" content="Best Boarding School in Dehradun | Tulas International School (TIS)" />
+    <meta
+      property="og:description"
+      content="CBSE-affiliated co-ed boarding school in Dehradun, Uttarakhand for boys and girls from Class 4 to 12."
+    />
+    <meta property="og:image" content="/assets/brand/schoollogo.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Best Boarding School in Dehradun | Tulas International School (TIS)" />
+    <meta
+      name="twitter:description"
+      content="CBSE-affiliated co-ed boarding school in Dehradun, Uttarakhand for boys and girls from Class 4 to 12."
+    />
+    <meta name="twitter:image" content="/assets/brand/schoollogo.png" />
+
+    <link rel="icon" type="image/png" href="/assets/brand/schoollogo.png" />
+
+    <!-- Preconnect & Preload Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Kumbh+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme initialization script (prevents flash of unstyled content / FOUC) -->
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem('tis-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (_) {}
+      })();
+    </script>
+
+    <!-- Structured Data (JSON-LD) for EducationalOrganization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Tulas International School",
+        "alternateName": "TIS Dehradun",
+        "url": "https://tis.edu.in/",
+        "logo": "https://tis.edu.in/_next/static/media/schoolLogo.95f6e121.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dhoolkot, P.O – Selaqui, Chakrata Road",
+          "addressLocality": "Dehradun",
+          "addressRegion": "Uttarakhand",
+          "postalCode": "248011",
+          "addressCountry": "IN"
+        },
+        "telephone": "+91-9837983791",
+        "email": "info@tis.edu.in"
+      }
+    </script>
+  </head>
+  <body class="bg-bg text-text antialiased selection:bg-secondary selection:text-white transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

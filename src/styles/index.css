@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Color System */
+    --primary: #B90124;
+    --primary-hover: #96001A;
+    --primary-dark: #B90124;
+    --secondary: #60BAB1;
+    --secondary-dark: #2F8F86;
+    --accent: #C9A24D; /* User Change #9: Keep gold in one variable for easy customization */
+    
+    /* Light Theme Neutral Surfaces */
+    --bg: #FFFFFF;
+    --surface: #FFFFFF;
+    --surface-card: #FDFBF7;
+    --text: #1C1B17;
+    --muted: #66615B;
+    --border: rgba(0, 0, 0, 0.08);
+  }
+
+  .dark {
+    /* Dark Theme Surfaces */
+    --primary: #E0304F;
+    --primary-hover: #F24A67;
+    --primary-dark: #E0304F;
+    --secondary: #60BAB1;
+    --secondary-dark: #60BAB1;
+    --accent: #E5BE65;
+
+    --bg: #0F0709;
+    --surface: #1A0D11;
+    --surface-card: #26141A;
+    --text: #F4ECEA;
+    --muted: #B8A9A6;
+    --border: rgba(255, 255, 255, 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Kumbh Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+  }
+
+  /* Performance: will-change sparingly */
+  .transform-gpu {
+    transform: translateZ(0);
+  }
+}
+
+/* User Change #4: Respect prefers-reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
