@@ -5,8 +5,10 @@ import { HamburgerOverlay } from './HamburgerOverlay.jsx';
 import { ThemeToggle } from '../animation/ThemeToggle.jsx';
 
 /**
- * Main Site Header: Sticky Crimson bar (#B90124) with overlapping circular logo badge,
- * centered desktop dropdown navigation, and matched pair of round control buttons on the right.
+ * Main Site Header: Full-width crimson bar (#B90124) with:
+ * - Logo at the far left corner (overlapping circular badge)
+ * - Navigation centered in the middle
+ * - Dark/Light toggle and Menu button at the far right corner
  */
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,14 +26,14 @@ export function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 bg-primary transition-all duration-300 ${
+        className={`sticky top-0 z-40 bg-primary transition-all duration-300 w-full ${
           isScrolled
             ? 'py-2 shadow-xl bg-primary/95 backdrop-blur-md'
             : 'py-3 sm:py-3.5 shadow-md'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-          {/* Overlapping Round Logo Badge (Matches authentic tis.edu.in structure) */}
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-4">
+          {/* Far Left Corner: Overlapping Round Logo Badge */}
           <div className="flex items-center flex-shrink-0">
             <a
               href="#"
@@ -57,14 +59,14 @@ export function Header() {
             </a>
           </div>
 
-          {/* Desktop Navigation Centered with Full Breathing Space */}
-          <div className="flex-1 flex justify-center">
+          {/* Center: Desktop Navigation Bar */}
+          <div className="hidden lg:flex flex-1 justify-center px-4">
             <DesktopNav />
           </div>
 
-          {/* Right Controls: Matched Pair of Circular Action Buttons */}
+          {/* Far Right Corner: Dark/Light Mode Switcher + Menu Button */}
           <div className="flex items-center gap-2.5 sm:gap-3 flex-shrink-0">
-            {/* Theme Toggle Button (Light/Dark Switcher) */}
+            {/* Dark / Light Mode Toggle Button */}
             <ThemeToggle />
 
             {/* Round Teal Hamburger Button (#60BAB1) */}
