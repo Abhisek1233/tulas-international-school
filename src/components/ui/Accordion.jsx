@@ -39,8 +39,8 @@ export function Accordion({ items, allowMultiple = false, className = '' }) {
                 onClick={() => toggleItem(item.id)}
                 className="w-full flex items-center justify-between gap-4 p-5 text-left font-heading font-bold text-base sm:text-lg text-text hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
               >
-                <span className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-primary/70 font-semibold">
+                <span className="flex items-center gap-3.5">
+                  <span className="font-heading font-black text-lg sm:text-xl text-secondary flex-shrink-0">
                     {String(index + 1).padStart(2, '0')}.
                   </span>
                   <span>{item.question}</span>
