@@ -29,7 +29,7 @@ export function StickyCtaBar({ onEnquireClick }) {
   if (!isVisible) return null;
 
   return (
-    <aside aria-label="Mobile Quick Actions" className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-border px-3 py-2 shadow-2xl safe-area-bottom">
+    <aside aria-label="Mobile Quick Actions" className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#1A0D11]/95 backdrop-blur-md border-t border-border px-3 py-2 shadow-2xl safe-area-bottom">
       <div className="grid grid-cols-4 gap-2 text-center">
         {/* Call */}
         <a
