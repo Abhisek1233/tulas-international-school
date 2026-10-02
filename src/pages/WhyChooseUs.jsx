@@ -130,13 +130,13 @@ export function WhyChooseUs() {
 
           {/* Alternating Reasons with Central Timeline Splitter */}
           <div className="relative">
-            {/* Center vertical splitter line on desktop */}
+            {/* Center vertical splitter line on tablet and desktop */}
             <div
-              className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-primary/30 pointer-events-none"
+              className="hidden md:block absolute top-6 bottom-6 left-1/2 -translate-x-1/2 w-1 bg-primary rounded-full shadow-sm z-0"
               aria-hidden="true"
             />
 
-            <div className="space-y-16 sm:space-y-24">
+            <div className="space-y-16 sm:space-y-24 relative z-10">
               {reasons.map((item, idx) => {
                 const isEven = idx % 2 === 0;
 
@@ -144,14 +144,14 @@ export function WhyChooseUs() {
                   <Reveal
                     key={item.id}
                     delay={0.08 * (idx % 4)}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center relative"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center relative"
                   >
                     {/* Left Column */}
-                    <div className={isEven ? 'order-1' : 'order-2 lg:order-1'}>
+                    <div className={`${isEven ? 'order-1' : 'order-2 md:order-1'} w-full md:pr-8 lg:pr-12`}>
                       {isEven ? (
                         /* Illustration on Left */
-                        <div className="flex justify-center">
-                          <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-32 bg-cream/80 dark:bg-surface-card border-2 border-primary/20 p-6 flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl group">
+                        <div className="flex justify-center md:justify-end">
+                          <div className="w-52 h-52 sm:w-60 sm:h-60 rounded-32 bg-cream/90 dark:bg-surface-card border-2 border-primary/25 p-6 flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl group">
                             <img
                               src={item.illustration}
                               alt={item.alt}
@@ -173,7 +173,7 @@ export function WhyChooseUs() {
                               {item.title}
                             </h3>
                           </div>
-                          <p className="text-text/80 text-base sm:text-lg leading-relaxed">
+                          <p className="text-text/85 text-base sm:text-lg leading-relaxed">
                             {item.paragraph}
                           </p>
                         </div>
@@ -181,7 +181,7 @@ export function WhyChooseUs() {
                     </div>
 
                     {/* Right Column */}
-                    <div className={isEven ? 'order-2' : 'order-1 lg:order-2'}>
+                    <div className={`${isEven ? 'order-2' : 'order-1 md:order-2'} w-full md:pl-8 lg:pl-12`}>
                       {isEven ? (
                         /* Text Block on Right */
                         <div className="w-full">
@@ -193,14 +193,14 @@ export function WhyChooseUs() {
                               {item.title}
                             </h3>
                           </div>
-                          <p className="text-text/80 text-base sm:text-lg leading-relaxed">
+                          <p className="text-text/85 text-base sm:text-lg leading-relaxed">
                             {item.paragraph}
                           </p>
                         </div>
                       ) : (
                         /* Illustration on Right */
-                        <div className="flex justify-center">
-                          <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-32 bg-cream/80 dark:bg-surface-card border-2 border-primary/20 p-6 flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl group">
+                        <div className="flex justify-center md:justify-start">
+                          <div className="w-52 h-52 sm:w-60 sm:h-60 rounded-32 bg-cream/90 dark:bg-surface-card border-2 border-primary/25 p-6 flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl group">
                             <img
                               src={item.illustration}
                               alt={item.alt}
@@ -218,6 +218,7 @@ export function WhyChooseUs() {
               })}
             </div>
           </div>
+
         </section>
       </div>
 
