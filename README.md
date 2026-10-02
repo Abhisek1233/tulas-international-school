@@ -7,7 +7,7 @@ A production-grade, animated, high-converting homepage redesign for **Tulas Inte
 ## Live Links & Repository
 
 - **Live Demo**: [Deploy on Vercel / Netlify with instructions below]
-- **Public GitHub Repository**: [Repository Link]
+- **Public GitHub Repository**: [https://github.com/Abhisek1233/tulas-international-school](https://github.com/Abhisek1233/tulas-international-school)
 
 ---
 
