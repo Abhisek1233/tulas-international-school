@@ -13,22 +13,16 @@ import { Button } from '../ui/Button.jsx';
  */
 export function Hero({ onEnquireClick }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
 
-  // Auto-advance slideshow every 3.5s unless hovered or reduced motion
+  // Auto-advance slideshow every 3.5 seconds smoothly
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % heroSlides.length);
     }, 3500);
 
-    return () => clearInterval(interval);
-  }, [isPaused]);
+    return () => clearInterval(timer);
+  }, [currentSlideIndex]);
 
   // Track initial scroll to fade out down arrow doodle
   useEffect(() => {
@@ -45,8 +39,6 @@ export function Hero({ onEnquireClick }) {
     <section
       aria-label="Welcome Hero Section"
       className="relative min-h-[92vh] flex flex-col justify-between bg-primary text-white overflow-hidden pt-8 pb-14 px-4 sm:px-6 lg:px-8"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background radial gradient & ambient subtle glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary via-[#8A011B] to-[#5C0012] pointer-events-none" />
