@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
+
 import { DesktopNav } from './DesktopNav.jsx';
 import { HamburgerOverlay } from './HamburgerOverlay.jsx';
 import { ThemeToggle } from '../animation/ThemeToggle.jsx';
@@ -35,8 +37,8 @@ export function Header() {
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-4">
           {/* Far Left Corner: Prominent Logo Badge Cleanly Contained */}
           <div className="flex items-center flex-shrink-0">
-            <a
-              href="#"
+            <Link
+              to="/"
               aria-label="Tulas International School Homepage"
               className="block group"
             >
@@ -56,8 +58,9 @@ export function Header() {
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
-            </a>
+            </Link>
           </div>
+
 
           {/* Center: Desktop Navigation Bar */}
           <div className="hidden lg:flex flex-1 justify-center px-4">

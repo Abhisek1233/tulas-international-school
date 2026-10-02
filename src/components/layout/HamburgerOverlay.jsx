@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, ChevronDown, ArrowUpRight } from 'lucide-react';
 import { navigationItems, hamburgerTiles } from '../../data/index.js';
@@ -9,6 +10,7 @@ import { useBodyScrollLock, useFocusTrap } from '../../hooks/index.js';
  * Left: Accordion list of all sections in large bold italic serif.
  * Right: 2x2 photo tiles in a warm cream panel with exact captions.
  * Includes focus trap, Escape key handling, and body scroll locking.
+ * Supports both internal <Link> (→) and external <a> (↗).
  */
 export function HamburgerOverlay({ isOpen, onClose }) {
   useBodyScrollLock(isOpen);
@@ -35,7 +37,7 @@ export function HamburgerOverlay({ isOpen, onClose }) {
         >
           {/* Top bar with close button */}
           <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-[#0F0709]/90 backdrop-blur-md border-b border-white/10">
-            <div className="flex items-center gap-3">
+            <Link to="/" onClick={onClose} className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5 shadow">
                 <img
                   src="/assets/brand/schoollogo.png"
@@ -45,10 +47,10 @@ export function HamburgerOverlay({ isOpen, onClose }) {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="font-heading font-extrabold uppercase text-lg tracking-wider text-white">
+              <span className="font-heading font-extrabold uppercase text-lg tracking-wider text-white group-hover:text-secondary transition-colors">
                 Tulas Menu
               </span>
-            </div>
+            </Link>
 
             <button
               type="button"
@@ -66,13 +68,13 @@ export function HamburgerOverlay({ isOpen, onClose }) {
             <div className="lg:col-span-7 p-6 sm:p-12 lg:border-r border-white/10 space-y-4">
               {/* Home link */}
               <div>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   onClick={onClose}
                   className="block font-display italic font-black text-3xl sm:text-4xl text-primary hover:text-primary-hover transition-colors"
                 >
                   Home
-                </a>
+                </Link>
               </div>
 
               {/* Navigation categories */}
@@ -116,22 +118,44 @@ export function HamburgerOverlay({ isOpen, onClose }) {
                             transition={{ duration: 0.25 }}
                             className="overflow-hidden pl-7 pt-2 pb-3 space-y-2"
                           >
-                            {item.children.map((child) => (
-                              <li key={child.label}>
-                                <a
-                                  href={child.url}
-                                  target={child.url.startsWith('http') ? '_blank' : undefined}
-                                  rel={child.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                  onClick={onClose}
-                                  className="inline-flex items-center gap-1.5 text-sm font-heading font-medium tracking-wide text-zinc-300 hover:text-white transition-colors py-1"
-                                >
-                                  <span>{child.label}</span>
-                                  {child.url.startsWith('http') && (
-                                    <ArrowUpRight className="w-3 h-3 text-secondary" />
-                                  )}
-                                </a>
-                              </li>
-                            ))}
+                            {item.children.map((child) => {
+                              const isInternal = Boolean(child.to);
+
+                              if (isInternal) {
+                                return (
+                                  <li key={child.label}>
+                                    <Link
+                                      to={child.to}
+                                      onClick={onClose}
+                                      className="inline-flex items-center gap-1.5 text-sm font-heading font-medium tracking-wide text-zinc-300 hover:text-secondary transition-colors py-1 group"
+                                    >
+                                      <span>{child.label}</span>
+                                      <ArrowRight className="w-3.5 h-3.5 text-secondary group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                  </li>
+                                );
+                              }
+
+                              const isExternal = (child.href || '').startsWith('http');
+                              return (
+                                <li key={child.label}>
+                                  <a
+                                    href={child.href}
+                                    target={isExternal ? '_blank' : undefined}
+                                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                                    onClick={onClose}
+                                    className="inline-flex items-center gap-1.5 text-sm font-heading font-medium tracking-wide text-zinc-300 hover:text-white transition-colors py-1 group"
+                                  >
+                                    <span>{child.label}</span>
+                                    {isExternal ? (
+                                      <ArrowUpRight className="w-3.5 h-3.5 text-secondary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                    ) : (
+                                      <ArrowRight className="w-3.5 h-3.5 text-secondary group-hover:translate-x-1 transition-transform" />
+                                    )}
+                                  </a>
+                                </li>
+                              );
+                            })}
                           </motion.ul>
                         )}
                       </AnimatePresence>

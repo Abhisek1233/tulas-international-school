@@ -1,56 +1,19 @@
 import React, { Suspense, lazy } from 'react';
-import { CustomCursor, ScrollProgress } from './components/animation/index.js';
-import { TopBar, Header, Footer } from './components/layout/index.js';
-import { Hero } from './components/sections/Hero.jsx';
-import {
-  ApplyTab,
-  WhatsAppButton,
-  EvaAssistant,
-  StickyCtaBar,
-} from './components/widgets/index.js';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ScrollToTop } from './components/layout/index.js';
 
-// React.lazy for all below-the-fold sections to optimize initial bundle size & LCP
-const ContactEnquiry = lazy(() =>
-  import('./components/sections/ContactEnquiry.jsx').then((m) => ({ default: m.ContactEnquiry }))
-);
-const StudentVoices = lazy(() =>
-  import('./components/sections/StudentVoices.jsx').then((m) => ({ default: m.StudentVoices }))
-);
-const Sports = lazy(() =>
-  import('./components/sections/Sports.jsx').then((m) => ({ default: m.Sports }))
-);
-const SecretSection = lazy(() =>
-  import('./components/sections/SecretSection.jsx').then((m) => ({ default: m.SecretSection }))
-);
-const StatsBento = lazy(() =>
-  import('./components/sections/StatsBento.jsx').then((m) => ({ default: m.StatsBento }))
-);
-const Rankings = lazy(() =>
-  import('./components/sections/Rankings.jsx').then((m) => ({ default: m.Rankings }))
-);
-const Personalities = lazy(() =>
-  import('./components/sections/Personalities.jsx').then((m) => ({ default: m.Personalities }))
-);
-const Awards = lazy(() =>
-  import('./components/sections/Awards.jsx').then((m) => ({ default: m.Awards }))
-);
-const VirtualTourBanner = lazy(() =>
-  import('./components/sections/VirtualTourBanner.jsx').then((m) => ({ default: m.VirtualTourBanner }))
-);
-const ParentVideos = lazy(() =>
-  import('./components/sections/ParentVideos.jsx').then((m) => ({ default: m.ParentVideos }))
-);
-const GoogleReviews = lazy(() =>
-  import('./components/sections/GoogleReviews.jsx').then((m) => ({ default: m.GoogleReviews }))
-);
-const Collaborations = lazy(() =>
-  import('./components/sections/Collaborations.jsx').then((m) => ({ default: m.Collaborations }))
-);
-const Faq = lazy(() =>
-  import('./components/sections/Faq.jsx').then((m) => ({ default: m.Faq }))
-);
+// Lazy load each route for optimal code-splitting and bundle performance
+const Home = lazy(() => import('./pages/Home.jsx').then((m) => ({ default: m.Home })));
+const OurHistory = lazy(() => import('./pages/OurHistory.jsx').then((m) => ({ default: m.OurHistory })));
+const WhyChooseUs = lazy(() => import('./pages/WhyChooseUs.jsx').then((m) => ({ default: m.WhyChooseUs })));
+const VisionMission = lazy(() => import('./pages/VisionMission.jsx').then((m) => ({ default: m.VisionMission })));
+const AwardsAchievements = lazy(() => import('./pages/AwardsAchievements.jsx').then((m) => ({ default: m.AwardsAchievements })));
+const HeadmasterProfile = lazy(() => import('./pages/HeadmasterProfile.jsx').then((m) => ({ default: m.HeadmasterProfile })));
+const OurManagement = lazy(() => import('./pages/OurManagement.jsx').then((m) => ({ default: m.OurManagement })));
+const NotFound = lazy(() => import('./pages/NotFound.jsx').then((m) => ({ default: m.NotFound })));
 
-class ErrorBoundary extends React.Component {
+class GlobalErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -61,110 +24,77 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error('ErrorBoundary caught:', error, errorInfo);
+    console.error('GlobalErrorBoundary caught:', error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback || null;
+      return (
+        <div className="min-h-screen bg-bg text-text flex flex-col items-center justify-center p-6 text-center">
+          <h2 className="font-heading font-black text-2xl sm:text-3xl text-primary mb-3">
+            Something went wrong
+          </h2>
+          <p className="text-muted text-sm sm:text-base max-w-md mb-6">
+            An error occurred while loading this page. Please try refreshing or returning to our homepage.
+          </p>
+          <a
+            href="/"
+            className="px-6 py-2.5 rounded-full bg-primary text-white font-heading font-bold text-sm tracking-wider uppercase hover:bg-primary-hover transition-colors"
+          >
+            Return to Homepage
+          </a>
+        </div>
+      );
     }
     return this.props.children;
   }
 }
 
-function SectionFallback() {
+function PageFallback() {
   return (
-    <div className="py-16 flex items-center justify-center" aria-hidden="true">
-      <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+    <div className="min-h-[60vh] flex items-center justify-center" aria-hidden="true">
+      <div className="w-10 h-10 rounded-full border-3 border-primary border-t-transparent animate-spin" />
     </div>
   );
 }
 
-export default function App() {
-  const handleScrollToEnquiry = () => {
-    const el = document.getElementById('enquiry');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+function AnimatedRoutes() {
+  const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-bg text-text transition-colors duration-300 relative flex flex-col selection:bg-secondary selection:text-white">
-      {/* Standout Feature 1: Custom Cursor */}
-      <CustomCursor />
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.18, ease: 'easeOut' }}
+        className="w-full flex-1 flex flex-col"
+      >
+        <Suspense fallback={<PageFallback />}>
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-tis/our-history" element={<OurHistory />} />
+            <Route path="/about-tis/why-choose-us" element={<WhyChooseUs />} />
+            <Route path="/about-tis/vision-and-mission" element={<VisionMission />} />
+            <Route path="/about-tis/awards-and-achievements" element={<AwardsAchievements />} />
+            <Route path="/about-tis/headmasters-profile" element={<HeadmasterProfile />} />
+            <Route path="/about-tis/our-management" element={<OurManagement />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
 
-      {/* Standout Feature 4: Scroll Progress Bar */}
-      <ScrollProgress />
-
-      {/* Top Utility Helpline Bar */}
-      <TopBar onEnquireClick={handleScrollToEnquiry} />
-
-      {/* Sticky Main Crimson Header */}
-      <Header />
-
-      {/* Floating Side Tab (Apply Now) */}
-      <ApplyTab />
-
-      {/* Floating WhatsApp Action */}
-      <WhatsAppButton />
-
-      {/* Virtual Admissions Assistant Eva */}
-      <EvaAssistant />
-
-      {/* Mobile Sticky CTA Bar */}
-      <StickyCtaBar onEnquireClick={handleScrollToEnquiry} />
-
-      {/* Main Single-Page Content Stream (Sections A through N) */}
-      <main id="main-content" className="flex-1">
-        {/* Section A: Hero (Eager loaded for instant LCP) */}
-        <Hero onEnquireClick={handleScrollToEnquiry} />
-
-        <ErrorBoundary fallback={<SectionFallback />}>
-          <Suspense fallback={<SectionFallback />}>
-            {/* Section B: Contact Us & Enquire Now Form */}
-            <ContactEnquiry />
-
-            {/* Section C: Student Voices */}
-            <StudentVoices />
-
-            {/* Section D: Sports Grid (16 disciplines) */}
-            <Sports />
-
-            {/* Section E: Secret to Making School Awesome */}
-            <SecretSection />
-
-            {/* Section F: Stats Bento Grid */}
-            <StatsBento />
-
-            {/* Section G: Rankings */}
-            <Rankings />
-
-            {/* Section H: Influential Personalities On Campus */}
-            <Personalities />
-
-            {/* Section I: Awards & Recognitions */}
-            <Awards />
-
-            {/* Section J: Virtual Tour Interactive Banner */}
-            <VirtualTourBanner />
-
-            {/* Section K: From The Parents (Video Testimonials) */}
-            <ParentVideos />
-
-            {/* Section L: Google Reviews */}
-            <GoogleReviews />
-
-            {/* Section M: 12+ Collaborations */}
-            <Collaborations />
-
-            {/* Section N: Frequently Asked Questions (18 Questions) */}
-            <Faq />
-          </Suspense>
-        </ErrorBoundary>
-      </main>
-
-      {/* Section O: Footer with Embedded Location Map */}
-      <Footer />
-    </div>
+export default function App() {
+  return (
+    <GlobalErrorBoundary>
+      <BrowserRouter>
+        <ScrollToTop />
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </GlobalErrorBoundary>
   );
 }

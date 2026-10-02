@@ -7,3 +7,5 @@ export * from './useOtpFlow.js';
 export * from './useBodyScrollLock.js';
 export * from './useFocusTrap.js';
 export * from './useMediaQuery.js';
+export * from './useDocumentTitle.js';
+
