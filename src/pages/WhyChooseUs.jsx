@@ -130,11 +130,12 @@ export function WhyChooseUs() {
 
           {/* Alternating Reasons with Central Timeline Splitter */}
           <div className="relative">
-            {/* Center vertical splitter line on tablet and desktop */}
+            {/* Center vertical splitter line on tablet and desktop (2px matching border-t-2) */}
             <div
-              className="hidden md:block absolute top-6 bottom-6 left-1/2 -translate-x-1/2 w-1 bg-primary rounded-full shadow-sm z-0"
+              className="hidden md:block absolute top-6 bottom-6 left-1/2 -translate-x-1/2 w-[2px] bg-primary rounded-full z-0"
               aria-hidden="true"
             />
+
 
             <div className="space-y-16 sm:space-y-24 relative z-10">
               {reasons.map((item, idx) => {
