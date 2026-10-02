@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDown, Sparkles, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowDown, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { heroSlides, heroContent, siteInfo } from '../../data/index.js';
 import { GoldUnderline } from '../ui/GoldUnderline.jsx';
 import { GoldEllipse } from '../ui/GoldEllipse.jsx';
@@ -69,17 +69,6 @@ export function Hero({ onEnquireClick }) {
 
       {/* Main Center Content */}
       <div className="relative z-10 max-w-6xl mx-auto w-full my-auto text-center space-y-8">
-        {/* Eyebrow badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/20 border border-secondary/40 text-secondary text-xs sm:text-sm font-heading font-extrabold uppercase tracking-widest"
-        >
-          <Sparkles className="w-4 h-4 text-secondary" />
-          <span>India's Top Co-Ed Boarding School • CBSE Affiliated</span>
-        </motion.div>
-
         {/* Huge Headline: "LET'S DO it With Tulas" */}
         <div className="space-y-1 sm:space-y-2">
           <motion.div
