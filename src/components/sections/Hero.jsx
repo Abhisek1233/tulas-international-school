@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDown, Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowDown, Sparkles, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { heroSlides, heroContent, siteInfo } from '../../data/index.js';
 import { GoldUnderline } from '../ui/GoldUnderline.jsx';
 import { GoldEllipse } from '../ui/GoldEllipse.jsx';
@@ -113,6 +113,48 @@ export function Hero({ onEnquireClick }) {
         {/* Dynamic Rotating 8-Cutout Slide Showcase */}
         <div className="relative py-4 flex flex-col items-center justify-center">
           <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 flex items-center justify-center">
+            {/* Left Floating Metric Pill */}
+            <div className="hidden lg:flex items-center gap-2.5 px-4 py-2 rounded-20 bg-black/40 backdrop-blur-md border border-white/20 shadow-xl text-left absolute -left-28 top-1/2 -translate-y-1/2 pointer-events-none">
+              <div className="w-9 h-9 rounded-full bg-secondary/30 flex items-center justify-center text-secondary font-heading font-extrabold text-xs">
+                100%
+              </div>
+              <div>
+                <span className="block font-heading uppercase text-[11px] font-bold text-white tracking-wider">CBSE Pass Rate</span>
+                <span className="block font-body text-[10px] text-white/70">Academic Excellence</span>
+              </div>
+            </div>
+
+            {/* Right Floating Metric Pill */}
+            <div className="hidden lg:flex items-center gap-2.5 px-4 py-2 rounded-20 bg-black/40 backdrop-blur-md border border-white/20 shadow-xl text-left absolute -right-28 top-1/2 -translate-y-1/2 pointer-events-none">
+              <div className="w-9 h-9 rounded-full bg-accent/30 flex items-center justify-center text-accent font-heading font-extrabold text-xs">
+                22
+              </div>
+              <div>
+                <span className="block font-heading uppercase text-[11px] font-bold text-white tracking-wider">Acre Campus</span>
+                <span className="block font-body text-[10px] text-white/70">Dehradun Valley</span>
+              </div>
+            </div>
+
+            {/* Previous Slide Button */}
+            <button
+              type="button"
+              onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+              aria-label="Previous student slide"
+              className="absolute -left-12 sm:-left-16 z-20 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 active:scale-95"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Next Slide Button */}
+            <button
+              type="button"
+              onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % heroSlides.length)}
+              aria-label="Next student slide"
+              className="absolute -right-12 sm:-right-16 z-20 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 active:scale-95"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide.id}
@@ -123,10 +165,10 @@ export function Hero({ onEnquireClick }) {
                 className="absolute inset-0 flex items-center justify-center"
                 data-cursor="View"
               >
-                {/* Colored Circle Backdrop */}
+                {/* Colored Circle Backdrop with Halo Glow */}
                 <div
                   style={{ backgroundColor: currentSlide.circleColor }}
-                  className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full flex items-center justify-center overflow-hidden shadow-2xl relative border-4 border-white/20"
+                  className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full flex items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(96,186,177,0.35),0_20px_40px_rgba(0,0,0,0.5)] relative border-4 border-white/30"
                 >
                   <img
                     src={currentSlide.image}
@@ -153,10 +195,10 @@ export function Hero({ onEnquireClick }) {
                   type="button"
                   onClick={() => setCurrentSlideIndex(idx)}
                   aria-label={`Jump to slide ${idx + 1}`}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     idx === currentSlideIndex
-                      ? 'bg-secondary w-6'
-                      : 'bg-white/30 hover:bg-white/60'
+                      ? 'bg-secondary w-7'
+                      : 'bg-white/30 hover:bg-white/60 w-2'
                   }`}
                 />
               ))}

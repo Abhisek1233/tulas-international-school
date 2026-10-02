@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, CheckCircle2 } from 'lucide-react';
 import { reviewsData, reviewsHeader } from '../../data/index.js';
 import { GoldUnderline } from '../ui/GoldUnderline.jsx';
 
@@ -121,13 +121,20 @@ export function GoogleReviews() {
                     "{currentReview.text}"
                   </blockquote>
 
-                  <div>
-                    <h3 className="font-heading font-extrabold uppercase text-base text-primary tracking-wide">
-                      {currentReview.name}
-                    </h3>
-                    <span className="font-heading text-xs font-bold text-muted uppercase tracking-wider block">
-                      {currentReview.relation}
-                    </span>
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
+                    <div>
+                      <h3 className="font-heading font-extrabold uppercase text-base text-primary tracking-wide">
+                        {currentReview.name}
+                      </h3>
+                      <span className="font-heading text-xs font-bold text-muted uppercase tracking-wider block">
+                        {currentReview.relation}
+                      </span>
+                    </div>
+
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-heading font-bold uppercase tracking-wider border border-emerald-200">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Verified Google Review</span>
+                    </div>
                   </div>
                 </div>
               </motion.div>

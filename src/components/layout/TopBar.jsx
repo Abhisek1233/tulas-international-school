@@ -20,6 +20,15 @@ export function TopBar({ onEnquireClick }) {
           <span>ADMISSIONS HELPLINE NO. {siteInfo.helpline}</span>
         </a>
 
+        {/* Center Live Admissions Announcement */}
+        <div className="hidden lg:flex items-center gap-2 text-[11px] tracking-widest text-white/95 font-heading">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+          </span>
+          <span>ADMISSIONS OPEN 2026–27 • CLASSES IV TO XII • SCHOLARSHIPS AVAILABLE</span>
+        </div>
+
         {/* Enquire CTA */}
         <div className="flex items-center gap-2">
           <Button

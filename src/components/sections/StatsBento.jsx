@@ -12,14 +12,14 @@ function StatCard({ stat }) {
   return (
     <div
       ref={ref}
-      className="p-6 sm:p-8 rounded-28 bg-white dark:bg-surface-card border border-border shadow-soft flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5"
+      className="group relative p-6 sm:p-8 rounded-28 bg-white dark:bg-surface-card border border-border shadow-soft flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(96,186,177,0.18)] hover:border-secondary/40 overflow-hidden"
     >
       <div className="flex items-start justify-between gap-4 mb-4">
         <span className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-primary tracking-tight">
           {count}
           {stat.suffix}
         </span>
-        <div className="w-12 h-12 rounded-20 bg-secondary/15 flex items-center justify-center p-2.5 flex-shrink-0">
+        <div className="w-12 h-12 rounded-20 bg-secondary/15 flex items-center justify-center p-2.5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
           <img
             src={stat.icon}
             alt={stat.alt}
@@ -39,6 +39,9 @@ function StatCard({ stat }) {
           {stat.description}
         </p>
       </div>
+
+      {/* Interactive hover bottom accent bar */}
+      <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
     </div>
   );
 }

@@ -36,8 +36,8 @@ export function DesktopNav() {
               type="button"
               aria-haspopup={hasChildren ? 'true' : 'false'}
               aria-expanded={isOpen}
-              className={`relative px-2.5 py-1.5 font-heading uppercase text-xs xl:text-[13px] font-bold tracking-wider text-white transition-colors hover:text-white/90 flex items-center gap-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-secondary rounded-lg ${
-                isOpen ? 'text-white' : 'text-white/95'
+              className={`relative px-3 py-1.5 font-heading uppercase text-xs xl:text-[13px] font-bold tracking-wider text-white transition-all duration-200 hover:bg-white/15 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-secondary rounded-full ${
+                isOpen ? 'bg-white/20 text-white shadow-inner' : 'text-white/95'
               }`}
             >
               <span>{item.label}</span>
@@ -50,10 +50,10 @@ export function DesktopNav() {
                 />
               )}
 
-              {/* Animated underline indicator */}
+              {/* Animated gold underline indicator */}
               <span
-                className={`absolute bottom-0 left-2 right-2 h-0.5 bg-accent transition-all duration-300 origin-center ${
-                  isOpen ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
+                className={`absolute bottom-0.5 left-3 right-3 h-0.5 bg-accent rounded-full transition-all duration-300 origin-center ${
+                  isOpen ? 'scale-x-100 opacity-100 shadow-[0_0_8px_rgba(245,130,32,0.9)]' : 'scale-x-0 opacity-0'
                 }`}
               />
             </button>
