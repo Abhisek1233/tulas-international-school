@@ -50,6 +50,28 @@ const Faq = lazy(() =>
   import('./components/sections/Faq.jsx').then((m) => ({ default: m.Faq }))
 );
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('ErrorBoundary caught:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || null;
+    }
+    return this.props.children;
+  }
+}
+
 function SectionFallback() {
   return (
     <div className="py-16 flex items-center justify-center" aria-hidden="true">
@@ -97,46 +119,48 @@ export default function App() {
         {/* Section A: Hero (Eager loaded for instant LCP) */}
         <Hero onEnquireClick={handleScrollToEnquiry} />
 
-        <Suspense fallback={<SectionFallback />}>
-          {/* Section B: Contact Us & Enquire Now Form */}
-          <ContactEnquiry />
+        <ErrorBoundary fallback={<SectionFallback />}>
+          <Suspense fallback={<SectionFallback />}>
+            {/* Section B: Contact Us & Enquire Now Form */}
+            <ContactEnquiry />
 
-          {/* Section C: Student Voices */}
-          <StudentVoices />
+            {/* Section C: Student Voices */}
+            <StudentVoices />
 
-          {/* Section D: Sports Grid (16 disciplines) */}
-          <Sports />
+            {/* Section D: Sports Grid (16 disciplines) */}
+            <Sports />
 
-          {/* Section E: Secret to Making School Awesome */}
-          <SecretSection />
+            {/* Section E: Secret to Making School Awesome */}
+            <SecretSection />
 
-          {/* Section F: Stats Bento Grid */}
-          <StatsBento />
+            {/* Section F: Stats Bento Grid */}
+            <StatsBento />
 
-          {/* Section G: Rankings */}
-          <Rankings />
+            {/* Section G: Rankings */}
+            <Rankings />
 
-          {/* Section H: Influential Personalities On Campus */}
-          <Personalities />
+            {/* Section H: Influential Personalities On Campus */}
+            <Personalities />
 
-          {/* Section I: Awards & Recognitions */}
-          <Awards />
+            {/* Section I: Awards & Recognitions */}
+            <Awards />
 
-          {/* Section J: Virtual Tour Interactive Banner */}
-          <VirtualTourBanner />
+            {/* Section J: Virtual Tour Interactive Banner */}
+            <VirtualTourBanner />
 
-          {/* Section K: From The Parents (Video Testimonials) */}
-          <ParentVideos />
+            {/* Section K: From The Parents (Video Testimonials) */}
+            <ParentVideos />
 
-          {/* Section L: Google Reviews */}
-          <GoogleReviews />
+            {/* Section L: Google Reviews */}
+            <GoogleReviews />
 
-          {/* Section M: 12+ Collaborations */}
-          <Collaborations />
+            {/* Section M: 12+ Collaborations */}
+            <Collaborations />
 
-          {/* Section N: Frequently Asked Questions (18 Questions) */}
-          <Faq />
-        </Suspense>
+            {/* Section N: Frequently Asked Questions (18 Questions) */}
+            <Faq />
+          </Suspense>
+        </ErrorBoundary>
       </main>
 
       {/* Section O: Footer with Embedded Location Map */}

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { sportsData, sportsContent } from '../../data/index.js';
 import { GoldEllipse } from '../ui/GoldEllipse.jsx';
-import { Reveal, RevealItem } from '../ui/Reveal.jsx';
 
 /**
  * Section D: Sports Grid
