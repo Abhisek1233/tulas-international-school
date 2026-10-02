@@ -1,7 +1,27 @@
 import React from 'react';
-import { ArrowUp, MapPin, Phone, Mail, ExternalLink, ShieldCheck } from 'lucide-react';
+import {
+  ArrowUp,
+  MapPin,
+  Phone,
+  Mail,
+  ExternalLink,
+  ShieldCheck,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Youtube,
+} from 'lucide-react';
 import { siteInfo } from '../../data/index.js';
 import { Button } from '../ui/Button.jsx';
+
+const socialIconMap = {
+  Facebook: Facebook,
+  Twitter: Twitter,
+  LinkedIn: Linkedin,
+  Instagram: Instagram,
+  YouTube: Youtube,
+};
 
 /**
  * Section O: Footer
@@ -216,26 +236,23 @@ export function Footer() {
             <p className="text-secondary font-semibold">{siteInfo.credits}</p>
           </div>
 
-          {/* Social Icons: High-Contrast Pure White Buttons with Inverted Icons */}
+          {/* Social Icons: Crisp White Circles with Crimson Icons shifting to Teal + White on Hover */}
           <div className="flex items-center gap-3">
-            {siteInfo.social.map((s) => (
-              <a
-                key={s.name}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visit TIS on ${s.name}`}
-                className="w-10 h-10 rounded-full bg-white hover:bg-secondary flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-md group focus-visible:ring-2 focus-visible:ring-white"
-              >
-                <img
-                  src={s.icon}
-                  alt={s.name}
-                  width="20"
-                  height="20"
-                  className="w-5 h-5 filter brightness-0 group-hover:brightness-0 group-hover:invert transition-all"
-                />
-              </a>
-            ))}
+            {siteInfo.social.map((s) => {
+              const IconComponent = socialIconMap[s.name] || ExternalLink;
+              return (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit TIS on ${s.name}`}
+                  className="w-10 h-10 rounded-full bg-white hover:bg-secondary text-primary hover:text-white flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-md group focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  <IconComponent className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
