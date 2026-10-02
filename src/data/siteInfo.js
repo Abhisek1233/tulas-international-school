@@ -17,7 +17,7 @@ export const siteInfo = {
   email: "info@tis.edu.in",
   emailMailto: "mailto:info@tis.edu.in",
   googleMapsUrl: "https://maps.app.goo.gl/maBF8syXueQkw31E6",
-  googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.846556514798!2d77.85764047648356!3d30.35532517476839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39092af441952e89%3A0xc3163351d382436!2sTula&#39;s%20International%20School!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+  googleMapsEmbed: "https://maps.google.com/maps?q=Dhoolkot%2C%20P.O%20-%20Selaqui%2C%20Chakrata%20Road%20Dehradun%2C%20Uttarakhand%20India&t=m&z=14&output=embed&iwloc=near",
   whatsappUrl: "https://wa.me/919837983791",
   portals: {
     applyNow: "https://admission.tis.edu.in",

@@ -15,7 +15,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#7B1F38] text-white pt-16 pb-12 overflow-hidden border-t-4 border-secondary">
+    <footer className="relative bg-[#7B1F38] text-white pt-16 pb-28 sm:pb-32 overflow-hidden border-t-4 border-secondary">
       {/* Background aerial campus photo with wine overlay */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <img
@@ -195,8 +195,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright, Redesign Attribution, and Social Links */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-300 font-body">
-          <div className="text-center sm:text-left space-y-0.5">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-zinc-300 font-body px-2 sm:px-12 md:px-28">
+          <div className="text-center md:text-left space-y-1">
             <p>{siteInfo.copyright}</p>
             <p className="text-secondary font-medium">{siteInfo.credits}</p>
           </div>
