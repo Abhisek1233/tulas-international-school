@@ -129,70 +129,98 @@ export function WhyChooseUs() {
           </Reveal>
 
           {/* Alternating Reasons with Central Timeline Splitter */}
-          <div className="relative space-y-16 sm:space-y-24">
+          <div className="relative">
             {/* Center vertical splitter line on desktop */}
-            <div className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent pointer-events-none" />
+            <div
+              className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-primary/30 pointer-events-none"
+              aria-hidden="true"
+            />
 
-            {reasons.map((item, idx) => {
-              const isEven = idx % 2 === 0;
+            <div className="space-y-16 sm:space-y-24">
+              {reasons.map((item, idx) => {
+                const isEven = idx % 2 === 0;
 
-              return (
-                <Reveal
-                  key={item.id}
-                  delay={0.08 * (idx % 4)}
-                  className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center relative ${
-                    isEven ? '' : 'lg:flex-row-reverse'
-                  }`}
-                >
-                  {/* Illustration Side */}
-                  <div
-                    className={`lg:col-span-5 flex justify-center ${
-                      isEven ? 'lg:order-1' : 'lg:order-2'
-                    }`}
+                return (
+                  <Reveal
+                    key={item.id}
+                    delay={0.08 * (idx % 4)}
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center relative"
                   >
-                    <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-32 bg-cream/80 dark:bg-surface-card border-2 border-primary/20 p-6 flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl group">
-                      <img
-                        src={item.illustration}
-                        alt={item.alt}
-                        loading="lazy"
-                        width="200"
-                        height="200"
-                        className="max-w-full max-h-full object-contain filter contrast-105 transition-transform duration-500 group-hover:scale-110"
-                      />
+                    {/* Left Column */}
+                    <div className={isEven ? 'order-1' : 'order-2 lg:order-1'}>
+                      {isEven ? (
+                        /* Illustration on Left */
+                        <div className="flex justify-center">
+                          <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-32 bg-cream/80 dark:bg-surface-card border-2 border-primary/20 p-6 flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl group">
+                            <img
+                              src={item.illustration}
+                              alt={item.alt}
+                              loading="lazy"
+                              width="200"
+                              height="200"
+                              className="max-w-full max-h-full object-contain filter contrast-105 transition-transform duration-500 group-hover:scale-110"
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        /* Text Block on Left */
+                        <div className="w-full">
+                          <div className="w-full border-t-2 border-primary pt-4 mb-3">
+                            <span className="font-heading font-black uppercase text-xs tracking-widest text-secondary block mb-1">
+                              Reason {idx + 1}
+                            </span>
+                            <h3 className="font-display italic font-bold text-2xl sm:text-3xl text-primary leading-tight">
+                              {item.title}
+                            </h3>
+                          </div>
+                          <p className="text-text/80 text-base sm:text-lg leading-relaxed">
+                            {item.paragraph}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                  </div>
 
-                  {/* Desktop Center Step Number Circle */}
-                  <div className="hidden lg:flex lg:col-span-2 justify-center z-10">
-                    <div className="w-12 h-12 rounded-full bg-primary text-white font-heading font-black text-base flex items-center justify-center shadow-lg border-4 border-white dark:border-surface">
-                      {String(idx + 1).padStart(2, '0')}
+                    {/* Right Column */}
+                    <div className={isEven ? 'order-2' : 'order-1 lg:order-2'}>
+                      {isEven ? (
+                        /* Text Block on Right */
+                        <div className="w-full">
+                          <div className="w-full border-t-2 border-primary pt-4 mb-3">
+                            <span className="font-heading font-black uppercase text-xs tracking-widest text-secondary block mb-1">
+                              Reason {idx + 1}
+                            </span>
+                            <h3 className="font-display italic font-bold text-2xl sm:text-3xl text-primary leading-tight">
+                              {item.title}
+                            </h3>
+                          </div>
+                          <p className="text-text/80 text-base sm:text-lg leading-relaxed">
+                            {item.paragraph}
+                          </p>
+                        </div>
+                      ) : (
+                        /* Illustration on Right */
+                        <div className="flex justify-center">
+                          <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-32 bg-cream/80 dark:bg-surface-card border-2 border-primary/20 p-6 flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl group">
+                            <img
+                              src={item.illustration}
+                              alt={item.alt}
+                              loading="lazy"
+                              width="200"
+                              height="200"
+                              className="max-w-full max-h-full object-contain filter contrast-105 transition-transform duration-500 group-hover:scale-110"
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-
-                  {/* Text Description Side */}
-                  <div
-                    className={`lg:col-span-5 ${
-                      isEven ? 'lg:order-2' : 'lg:order-1'
-                    }`}
-                  >
-                    <div className="border-t-2 border-primary pt-4 mb-3">
-                      <span className="font-heading font-black uppercase text-xs tracking-widest text-secondary block mb-1">
-                        Reason {idx + 1}
-                      </span>
-                      <h3 className="font-display italic font-bold text-2xl sm:text-3xl text-primary leading-tight">
-                        {item.title}
-                      </h3>
-                    </div>
-                    <p className="text-text/80 text-base sm:text-lg leading-relaxed">
-                      {item.paragraph}
-                    </p>
-                  </div>
-                </Reveal>
-              );
-            })}
+                  </Reveal>
+                );
+              })}
+            </div>
           </div>
         </section>
       </div>
+
     </InnerPageLayout>
   );
 }
