@@ -113,48 +113,6 @@ export function Hero({ onEnquireClick }) {
         {/* Dynamic Rotating 8-Cutout Slide Showcase */}
         <div className="relative py-4 flex flex-col items-center justify-center">
           <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 flex items-center justify-center">
-            {/* Left Floating Metric Pill */}
-            <div className="hidden lg:flex items-center gap-2.5 px-4 py-2 rounded-20 bg-black/40 backdrop-blur-md border border-white/20 shadow-xl text-left absolute -left-28 top-1/2 -translate-y-1/2 pointer-events-none">
-              <div className="w-9 h-9 rounded-full bg-secondary/30 flex items-center justify-center text-secondary font-heading font-extrabold text-xs">
-                100%
-              </div>
-              <div>
-                <span className="block font-heading uppercase text-[11px] font-bold text-white tracking-wider">CBSE Pass Rate</span>
-                <span className="block font-body text-[10px] text-white/70">Academic Excellence</span>
-              </div>
-            </div>
-
-            {/* Right Floating Metric Pill */}
-            <div className="hidden lg:flex items-center gap-2.5 px-4 py-2 rounded-20 bg-black/40 backdrop-blur-md border border-white/20 shadow-xl text-left absolute -right-28 top-1/2 -translate-y-1/2 pointer-events-none">
-              <div className="w-9 h-9 rounded-full bg-accent/30 flex items-center justify-center text-accent font-heading font-extrabold text-xs">
-                22
-              </div>
-              <div>
-                <span className="block font-heading uppercase text-[11px] font-bold text-white tracking-wider">Acre Campus</span>
-                <span className="block font-body text-[10px] text-white/70">Dehradun Valley</span>
-              </div>
-            </div>
-
-            {/* Previous Slide Button */}
-            <button
-              type="button"
-              onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
-              aria-label="Previous student slide"
-              className="absolute -left-12 sm:-left-16 z-20 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 active:scale-95"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            {/* Next Slide Button */}
-            <button
-              type="button"
-              onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % heroSlides.length)}
-              aria-label="Next student slide"
-              className="absolute -right-12 sm:-right-16 z-20 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 active:scale-95"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide.id}
@@ -183,25 +141,46 @@ export function Hero({ onEnquireClick }) {
             </AnimatePresence>
           </div>
 
-          {/* Slide Indicator & Activity Label */}
-          <div className="mt-4 flex items-center gap-3">
-            <span className="text-xs font-heading font-bold uppercase tracking-wider text-secondary">
+          {/* Clean Slide Indicator & Activity Label with Arrow Controls */}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            <span className="text-xs sm:text-sm font-heading font-extrabold uppercase tracking-wider text-secondary">
               {currentSlide.name} • {currentSlide.activity}
             </span>
-            <div className="flex gap-1.5" aria-hidden="true">
-              {heroSlides.map((s, idx) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setCurrentSlideIndex(idx)}
-                  aria-label={`Jump to slide ${idx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    idx === currentSlideIndex
-                      ? 'bg-secondary w-7'
-                      : 'bg-white/30 hover:bg-white/60 w-2'
-                  }`}
-                />
-              ))}
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+                aria-label="Previous student slide"
+                className="w-6 h-6 rounded-full bg-white/10 hover:bg-secondary text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+
+              <div className="flex gap-1.5" aria-hidden="true">
+                {heroSlides.map((s, idx) => (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => setCurrentSlideIndex(idx)}
+                    aria-label={`Jump to slide ${idx + 1}`}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      idx === currentSlideIndex
+                        ? 'bg-secondary w-7'
+                        : 'bg-white/30 hover:bg-white/60 w-2'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % heroSlides.length)}
+                aria-label="Next student slide"
+                className="w-6 h-6 rounded-full bg-white/10 hover:bg-secondary text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
         </div>
