@@ -6,7 +6,7 @@ import { useTheme } from '../../hooks/index.js';
 /**
  * STANDOUT FEATURE 3: Animated Dark/Light Theme Switcher
  * - Sun/Moon morphing button toggling Tailwind CSS `.dark` class.
- * - Smooth rotation and scale transition.
+ * - Perfectly sized (w-10 h-10 / w-11 h-11) to match the circular hamburger button.
  * - Persisted in localStorage and initialized early to prevent FOUC.
  */
 export function ThemeToggle({ className = '' }) {
@@ -18,7 +18,7 @@ export function ThemeToggle({ className = '' }) {
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={`relative p-2 rounded-full border border-white/20 text-white hover:bg-white/10 active:scale-95 transition-colors focus-visible:ring-2 focus-visible:ring-secondary ${className}`}
+      className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 text-white flex items-center justify-center shadow-md active:scale-95 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-white flex-shrink-0 ${className}`}
     >
       <motion.div
         key={isDark ? 'dark' : 'light'}
@@ -29,9 +29,9 @@ export function ThemeToggle({ className = '' }) {
         className="flex items-center justify-center"
       >
         {isDark ? (
-          <Sun className="w-4 h-4 text-amber-300" />
+          <Sun className="w-5 h-5 text-amber-300" />
         ) : (
-          <Moon className="w-4 h-4 text-white" />
+          <Moon className="w-5 h-5 text-white" />
         )}
       </motion.div>
     </button>
