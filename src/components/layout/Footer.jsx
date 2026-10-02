@@ -72,25 +72,16 @@ export function Footer() {
 
           {/* Col 2: School Identity & Direct Contact Coordinates (3.5 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            {/* School Crest & Name Header */}
-            <div className="flex items-center gap-3 mb-1">
-              <div className="w-13 h-13 rounded-full bg-white p-1.5 shadow-md flex-shrink-0">
-                <img
-                  src="/assets/brand/schoollogo.png"
-                  alt="TIS Crest"
-                  width="50"
-                  height="50"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <span className="font-heading font-extrabold uppercase text-sm tracking-wider block text-white leading-tight">
-                  Tula's International School
-                </span>
-                <span className="font-display italic text-secondary text-xs font-semibold">
-                  The Modern Gurukul • Dehradun
-                </span>
-              </div>
+            {/* Official School Crest & Name Header */}
+            <div className="w-52 sm:w-60 mb-2">
+              <img
+                src="/assets/brand/footer-logo.png"
+                alt="Tula's International School Official Logo"
+                width="220"
+                height="78"
+                loading="lazy"
+                className="w-full h-auto object-contain filter brightness-110 drop-shadow-md"
+              />
             </div>
 
             {/* Address */}
