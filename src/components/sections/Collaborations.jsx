@@ -52,16 +52,16 @@ export function Collaborations() {
               {loopRow1.map((collab, idx) => (
                 <div
                   key={`${collab.id}-r1-${idx}`}
-                  className="w-48 sm:w-56 h-24 rounded-24 bg-white dark:bg-surface-card border border-border p-4 flex items-center justify-center shadow-soft transition-all duration-300 group hover:shadow-lift"
+                  className="w-56 sm:w-64 h-28 rounded-24 bg-white dark:bg-surface-card border border-border p-4 flex items-center justify-center shadow-md transition-all duration-300 group hover:shadow-xl hover:border-secondary/60 hover:-translate-y-1"
                   title={collab.name}
                 >
                   <img
                     src={collab.logo}
                     alt={collab.alt}
-                    width="160"
-                    height="60"
+                    width="180"
+                    height="70"
                     loading="lazy"
-                    className="max-h-12 max-w-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                    className="max-h-16 max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105 filter contrast-105"
                   />
                 </div>
               ))}
@@ -78,16 +78,16 @@ export function Collaborations() {
               {loopRow2.map((collab, idx) => (
                 <div
                   key={`${collab.id}-r2-${idx}`}
-                  className="w-48 sm:w-56 h-24 rounded-24 bg-white dark:bg-surface-card border border-border p-4 flex items-center justify-center shadow-soft transition-all duration-300 group hover:shadow-lift"
+                  className="w-56 sm:w-64 h-28 rounded-24 bg-white dark:bg-surface-card border border-border p-4 flex items-center justify-center shadow-md transition-all duration-300 group hover:shadow-xl hover:border-secondary/60 hover:-translate-y-1"
                   title={collab.name}
                 >
                   <img
                     src={collab.logo}
                     alt={collab.alt}
-                    width="160"
-                    height="60"
+                    width="180"
+                    height="70"
                     loading="lazy"
-                    className="max-h-12 max-w-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                    className="max-h-16 max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105 filter contrast-105"
                   />
                 </div>
               ))}
