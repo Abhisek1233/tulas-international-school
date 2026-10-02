@@ -33,25 +33,25 @@ export function Header() {
         }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-4">
-          {/* Far Left Corner: Overlapping Round Logo Badge */}
+          {/* Far Left Corner: Cleanly Contained Logo Badge */}
           <div className="flex items-center flex-shrink-0">
             <a
               href="#"
               aria-label="Tulas International School Homepage"
-              className="relative z-10 block group"
+              className="block group"
             >
               <div
-                className={`rounded-full bg-white flex items-center justify-center p-2 shadow-2xl transition-all duration-300 border-2 border-primary/20 ${
+                className={`rounded-full bg-white flex items-center justify-center p-1.5 shadow-md transition-all duration-300 border border-white/40 ${
                   isScrolled
-                    ? 'w-14 h-14 -my-2 sm:-my-3'
-                    : 'w-16 h-16 sm:w-20 sm:h-20 -my-3 sm:-my-5'
+                    ? 'w-11 h-11'
+                    : 'w-12 h-12 sm:w-13 sm:h-13'
                 }`}
               >
                 <img
                   src="/assets/brand/schoollogo.png"
                   alt="Tulas International School Official Crest Logo"
-                  width="72"
-                  height="72"
+                  width="52"
+                  height="52"
                   fetchPriority="high"
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
