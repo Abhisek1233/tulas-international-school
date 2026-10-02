@@ -77,10 +77,15 @@ function AnimatedRoutes() {
             <Route path="/about-tis/our-history" element={<OurHistory />} />
             <Route path="/about-tis/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/about-tis/vision-and-mission" element={<VisionMission />} />
+            <Route path="/about-tis/vision-mission" element={<VisionMission />} />
             <Route path="/about-tis/awards-and-achievements" element={<AwardsAchievements />} />
+            <Route path="/about-tis/awards-achievements" element={<AwardsAchievements />} />
             <Route path="/about-tis/headmasters-profile" element={<HeadmasterProfile />} />
+            <Route path="/about-tis/principal-message" element={<HeadmasterProfile />} />
             <Route path="/about-tis/our-management" element={<OurManagement />} />
+            <Route path="/about-tis/about-management" element={<OurManagement />} />
             <Route path="*" element={<NotFound />} />
+
           </Routes>
         </Suspense>
       </motion.div>

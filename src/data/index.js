@@ -15,3 +15,5 @@ export * from './faqs.js';
 export * from './collaborations.js';
 export * from './voices.js';
 export * from './enquiryOptions.js';
+export * from './pages/index.js';
+

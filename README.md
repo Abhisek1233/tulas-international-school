@@ -11,14 +11,31 @@ A production-grade, animated, high-converting homepage redesign for **Tulas Inte
 
 ---
 
+## Site Routes Table
+
+| Route | Page | Purpose & Key Features |
+|---|---|---|
+| `/` | `Home.jsx` | Full 15-section homepage (Hero, Enquiry, Voices, Sports, Stats, Rankings, Personalities, Awards, Reviews, FAQ, etc.) |
+| `/about-tis/our-history` | `OurHistory.jsx` | Inception story, 2004–2012 founder journey, next-gen leadership portraits, offset line-framed photos |
+| `/about-tis/why-choose-us` | `WhyChooseUs.jsx` | Playful hand-drawn polaroids hanging on interactive clothesline, Caveat handwriting font, 8 core reasons with center split |
+| `/about-tis/vision-and-mission` | `VisionMission.jsx` | Mission, Vision, and Community Values (Equity & Engagement) with gold underlines and check badges |
+| `/about-tis/awards-and-achievements` | `AwardsAchievements.jsx` | 2014–2023 year-by-year timeline, sports & Olympiad honors, and full-resolution certificate Lightbox modal |
+| `/about-tis/headmasters-profile` | `HeadmasterProfile.jsx` | Mr. Raman Koushal biography, editorial display typography, quotation ornament, readable 65ch column |
+| `/about-tis/our-management` | `OurManagement.jsx` | 4 management portrait cards with animated W3C accessible disclosure panels and credentials lists |
+| `*` | `NotFound.jsx` | Accessible 404 error page with Return Home and Admissions CTAs |
+
+---
+
 ## Tech Stack
 
 - **Core Framework**: React 18+ (`react`, `react-dom`) with Vite 5.
+- **Routing**: `react-router-dom` v6 (`react-router-dom@^6.28.0`) — Added as the single authorized new dependency to deliver declarative client-side SPA routing with asynchronous code-splitting via `React.lazy()` and `<Suspense>`, preserving 60 FPS transitions without reloading assets or re-mounting global context.
 - **Styling**: Tailwind CSS v3 pinned (`tailwindcss@3.4.17`, `postcss`, `autoprefixer`).
 - **Motion & Interactions**: Framer Motion (`framer-motion@11.11.17`).
 - **Icons**: Lucide React (`lucide-react@0.460.0`).
-- **Fonts**: Google Fonts (*Barlow Semi Condensed*, *Playfair Display*, *Kumbh Sans*).
-- **Deployment**: Vercel / Netlify ready with automated SPA configuration (`vercel.json`).
+- **Fonts**: Google Fonts (*Barlow Semi Condensed*, *Playfair Display*, *Kumbh Sans*, *Caveat*).
+- **Deployment**: Vercel / Netlify ready with automated SPA rewrites (`vercel.json`, `public/_redirects`).
+
 
 ---
 

@@ -45,6 +45,8 @@ export default {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
         heading: ['"Barlow Semi Condensed"', 'sans-serif'],
         body: ['"Kumbh Sans"', 'system-ui', 'sans-serif'],
+        handwriting: ['"Caveat"', 'cursive'],
+
       },
       borderRadius: {
         '20': '20px',

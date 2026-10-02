@@ -86,6 +86,7 @@ graph TD
 | `useBodyScrollLock.js` | Locks document body scroll when overlays (Hamburger, Modal, Lightbox) are open, measuring scrollbar width to prevent layout shifts. |
 | `useFocusTrap.js` | Query-selects focusable elements within an active container, trapping the keyboard Tab loop and listening for the `Escape` key to close overlays. |
 | `useMediaQuery.js` | Synchronizes React state with any CSS media query string (e.g. `(min-width: 1024px)`). |
+| `useDocumentTitle.js` | Synchronizes `document.title` on route mount and restores prior title on unmount without requiring third-party libraries. |
 
 ---
 
@@ -97,7 +98,22 @@ graph TD
    - The live site relies on a streamlined single-view enquiry form. Multi-step forms introduce unnecessary friction for quick mobile admissions inquiries.
 3. **Why Single Active Video Coordination in `ParentVideos`?**
    - In `PhoneFrame.jsx`, each player coordinates through an `activeVideoId` state managed in the parent. When a user plays one parent testimonial, any other playing video is automatically paused to prevent overlapping audio.
-4. **Accessible Disclosure in `Faq.jsx`**:
-   - The accordion adheres to W3C ARIA Authoring Practices with proper `aria-expanded` and `aria-controls` bindings and keyboard navigation.
+4. **Accessible Disclosure in `Faq.jsx` and `OurManagement.jsx`**:
+   - The accordion and leadership disclosure panels adhere to W3C ARIA Authoring Practices with proper `aria-expanded` and `aria-controls` bindings and keyboard navigation.
 5. **No Unused Code Audit**:
-   - Every hook in `src/hooks`, component in `src/components`, and dataset in `src/data` is wired and imported. Zero dead files exist in the repository.
+   - Every hook in `src/hooks`, component in `src/components`, page in `src/pages`, and dataset in `src/data` is wired and imported. Zero dead files exist in the repository.
+
+---
+
+## 6. Inner Pages & Routing Architecture
+
+### Declarative Client-Side SPA Routing
+- **Routing Engine**: `react-router-dom` v6 (`BrowserRouter`, `Routes`, `Route`, `useLocation`).
+- **Route-Level Asynchronous Code-Splitting**: All inner pages (`Home`, `OurHistory`, `WhyChooseUs`, `VisionMission`, `AwardsAchievements`, `HeadmasterProfile`, `OurManagement`, `NotFound`) are loaded on-demand via `React.lazy()` and `<Suspense>`, preserving light initial payloads (~283 kB vendor/app bundle).
+- **Navigation Feedback**: Desktop dropdown and hamburger overlay use `<Link>` with `→` (`ArrowRight`) for internal routes and `<a>` with `↗` (`ArrowUpRight`) for external routes.
+- **Scroll Restoration**: `<ScrollToTop />` listens to `location.pathname` and immediately resets window scroll to `(0, 0)`.
+- **Shared Inner-Page Layout Pattern (`InnerPageLayout.jsx`)**:
+  - Full-width `PageHero` with layered dark gradients, single `<h1>`, and scroll-driven parallax via Framer Motion.
+  - Brand crimson (`#B90124`) `TaglineStrip` under the hero with one centered white line.
+  - Universal layout wrapping with `TopBar`, `Header`, `Footer`, `CustomCursor`, `ScrollProgress`, and floating widgets (`ApplyTab`, `WhatsApp`, `Eva`).
+
