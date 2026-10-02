@@ -33,7 +33,7 @@ export function Header() {
         }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-4">
-          {/* Far Left Corner: Cleanly Contained Logo Badge */}
+          {/* Far Left Corner: Prominent Logo Badge Cleanly Contained */}
           <div className="flex items-center flex-shrink-0">
             <a
               href="#"
@@ -41,17 +41,17 @@ export function Header() {
               className="block group"
             >
               <div
-                className={`rounded-full bg-white flex items-center justify-center p-1.5 shadow-md transition-all duration-300 border border-white/40 ${
+                className={`rounded-full bg-white flex items-center justify-center p-2 shadow-lg transition-all duration-300 border-2 border-white/50 ${
                   isScrolled
-                    ? 'w-11 h-11'
-                    : 'w-12 h-12 sm:w-13 sm:h-13'
+                    ? 'w-12 h-12 sm:w-14 sm:h-14'
+                    : 'w-16 h-16 sm:w-20 sm:h-20'
                 }`}
               >
                 <img
                   src="/assets/brand/schoollogo.png"
                   alt="Tulas International School Official Crest Logo"
-                  width="52"
-                  height="52"
+                  width="76"
+                  height="76"
                   fetchPriority="high"
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
